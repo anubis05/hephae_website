@@ -5,18 +5,18 @@ import { NeuralBackground } from './NeuralBackground';
 export const ShowcasePage: React.FC = () => {
     const apps = [
         {
-            title: "AI Readiness Quest",
-            description: "Test your business's AI readiness with this interactive quest. Survive the week as a boss facing AI challenges!",
-            image: "https://insights.ai.hephae.co/product_mockup_thumbnail.png", // Keeping existing thumbnail for now
-            tags: ["Assessment", "Interactive Game"],
-            link: "https://ai-readiness-quest-1096334123076.us-west1.run.app"
+            title: "AI Product Mockup",
+            description: "Generate professional product mockups in seconds using advanced generative AI models. Perfect for marketing and presentations.",
+            image: "https://insights.ai.hephae.co/product_mockup_thumbnail.png",
+            tags: ["Image Generation", "Marketing"],
+            link: "https://aistudio.google.com/apps/bundled/product_mockup?showPreview=true&showAssistant=true"
         },
         {
-            title: "Aetheria: The AI-Powered Restaurant",
-            description: "Experience the future of dining with Aetheria. An AI-powered restaurant concept demonstrating generative AI in hospitality.",
-            image: "https://insights.ai.hephae.co/marketing_ai_thumbnail.png", // Keeping existing thumbnail for now
-            tags: ["Hospitality", "Demo"],
-            link: "https://aetheria-the-ai-powered-restaurant-1096334123076.us-west1.run.app"
+            title: "Marketing Business AI",
+            description: "An intelligent assistant for small businesses to create marketing strategies, content calendars, and ad copy.",
+            image: "https://insights.ai.hephae.co/marketing_ai_thumbnail.png", // Placeholder
+            tags: ["Text Generation", "Strategy"],
+            link: "https://chatgpt.com/g/g-Wud3tXQj3-marketing-business-ai"
         }
     ];
 
