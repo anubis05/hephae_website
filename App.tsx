@@ -7,6 +7,8 @@ import { ProblemSection } from './components/ProblemSection';
 import { IntroductionSection } from './components/IntroductionSection';
 import { SchedulePage } from './components/SchedulePage';
 import { AboutPage } from './components/AboutPage';
+import { ShowcasePage } from './components/ShowcasePage';
+import { BlogPage } from './components/BlogPage';
 import { SERVICE_TIERS } from './constants';
 import { ArrowRight, Utensils } from 'lucide-react';
 
@@ -15,9 +17,9 @@ const App: React.FC = () => {
   const [titleLine2, setTitleLine2] = useState('');
   const [isLine1Complete, setIsLine1Complete] = useState(false);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  
+
   // State to manage current view
-  // 'home' | 'schedule' | 'about'
+  // 'home' | 'schedule' | 'about' | 'showcase' | 'blog'
   const [currentView, setCurrentView] = useState<string>('home');
   const [selectedService, setSelectedService] = useState<string>('General Inquiry');
 
@@ -61,32 +63,77 @@ const App: React.FC = () => {
     setCurrentView('schedule');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  
+
   const handleAboutClick = () => {
-      setCurrentView('about');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView('about');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  
+
+  const handleShowcaseClick = () => {
+    setCurrentView('showcase');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBlogClick = () => {
+    setCurrentView('blog');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleBackHome = () => {
-      setCurrentView('home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   if (currentView === 'schedule') {
     return <SchedulePage onBack={handleBackHome} initialService={selectedService} />;
   }
-  
+
   if (currentView === 'about') {
-      return <AboutPage onBack={handleBackHome} />;
+    return <AboutPage onBack={handleBackHome} />;
+  }
+
+  if (currentView === 'showcase') {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navbar
+          onScheduleClick={() => handleScheduleClick('General Inquiry')}
+          onAboutClick={handleAboutClick}
+          onShowcaseClick={handleShowcaseClick}
+          onBlogClick={handleBlogClick}
+        />
+        <ShowcasePage />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentView === 'blog') {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navbar
+          onScheduleClick={() => handleScheduleClick('General Inquiry')}
+          onAboutClick={handleAboutClick}
+          onShowcaseClick={handleShowcaseClick}
+          onBlogClick={handleBlogClick}
+        />
+        <BlogPage />
+        <Footer />
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar onScheduleClick={() => handleScheduleClick('General Inquiry')} onAboutClick={handleAboutClick} />
-      
+      <Navbar
+        onScheduleClick={() => handleScheduleClick('General Inquiry')}
+        onAboutClick={handleAboutClick}
+        onShowcaseClick={handleShowcaseClick}
+        onBlogClick={handleBlogClick}
+      />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        
+
         {/* Static Background Elements (Blobs) - Placed BEHIND Neural Background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none z-0">
           <div className="absolute top-20 right-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -98,14 +145,14 @@ const App: React.FC = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 pointer-events-none">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/50 border border-blue-100/50 backdrop-blur-md mb-8 pointer-events-auto shadow-sm transition-transform hover:scale-105 duration-300">
-            <img 
-              src="https://insights.ai.hephae.co/hephae_logo_blue.png" 
-              alt="Hephae Logo" 
-              className="h-8 w-auto object-contain" 
+            <img
+              src="https://insights.ai.hephae.co/hephae_logo_blue.png"
+              alt="Hephae Logo"
+              className="h-8 w-auto object-contain"
             />
             <span className="text-xl font-bold font-display text-gray-900 tracking-widest">HEPHAE</span>
           </div>
-          
+
           <h1 className="text-6xl md:text-8xl font-extrabold text-gray-900 tracking-tighter mb-8 leading-[1.1] min-h-[2.2em]">
             {titleLine1}
             {!isLine1Complete && <span className="animate-pulse text-blue-600">|</span>}
@@ -115,25 +162,25 @@ const App: React.FC = () => {
               {isLine1Complete && !isTypingComplete && <span className="animate-pulse text-blue-600">|</span>}
             </span>
           </h1>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto mt-12 relative z-20">
-             <a 
+            <a
               href="https://ai-readiness-quest-1096334123076.us-west1.run.app"
               target="_blank"
               rel="noopener noreferrer"
               className="animate-pulse-ring bg-gradient-to-r from-blue-600 to-violet-600 text-white px-8 py-4 rounded-full font-bold text-lg md:text-xl hover:shadow-[0_0_40px_rgba(79,70,229,0.6)] transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(0,0,0,0.2)] border border-white/20 group"
-             >
-               Play the AI Readiness Quest <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-             </a>
-             
-             <a 
+            >
+              Play the AI Readiness Quest <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            <a
               href="https://aetheria-ai-restaurant-737598413072.us-central1.run.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/80 backdrop-blur-md text-gray-900 border border-white/40 px-8 py-4 rounded-full font-bold text-lg md:text-xl hover:bg-white transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_20px_rgba(0,0,0,0.1)]"
-             >
-               Try Restaurant Demo <Utensils size={20} className="text-gray-500" />
-             </a>
+            >
+              Try Restaurant Demo <Utensils size={20} className="text-gray-500" />
+            </a>
           </div>
         </div>
       </section>
@@ -157,20 +204,20 @@ const App: React.FC = () => {
               <PricingCard key={tier.id} tier={tier} />
             ))}
           </div>
-          
+
           {/* Global CTA */}
           <div className="mt-16 text-center">
-             <button 
+            <button
               onClick={() => handleScheduleClick()}
               className="bg-black text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-3 mx-auto"
-             >
-                Start Your Transformation <ArrowRight size={20} />
-             </button>
-             <p className="text-gray-500 mt-4 text-sm">Select your preferred service in the next step.</p>
+            >
+              Start Your Transformation <ArrowRight size={20} />
+            </button>
+            <p className="text-gray-500 mt-4 text-sm">Select your preferred service in the next step.</p>
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
