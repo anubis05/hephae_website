@@ -29,8 +29,8 @@ export const ShowcasePage: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
                 {/* Enable pointer events for content */}
-                <div className="pointer-events-auto">
-                    <div className="text-center mb-16">
+                <div>
+                    <div className="text-center mb-16 pointer-events-auto">
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                             Showcase Apps
                         </h1>
@@ -46,7 +46,7 @@ export const ShowcasePage: React.FC = () => {
                                 href={app.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col h-full transform hover:-translate-y-1"
+                                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col h-full transform hover:-translate-y-1 pointer-events-auto"
                             >
                                 <div className="h-48 overflow-hidden relative">
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:opacity-0 transition-opacity duration-300" />
