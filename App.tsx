@@ -87,6 +87,18 @@ const App: React.FC = () => {
     navigateTo('schedule', '/schedule');
   };
 
+  const handleAboutClick = () => {
+    navigateTo('about', '/about');
+  };
+
+  const handleToolkitClick = () => {
+    navigateTo('toolkit', '/toolkit');
+  };
+
+  const handleBlogClick = () => {
+    navigateTo('blog', '/blog');
+  };
+
   const handleBackHome = () => {
     navigateTo('home', '/');
   };
