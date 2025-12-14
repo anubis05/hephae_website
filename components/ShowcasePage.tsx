@@ -2,8 +2,36 @@ import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { OptimizationBackground } from './OptimizationBackground';
 
-export const ShowcasePage: React.FC = () => {
-    const apps = [
+interface ShowcasePageProps {
+    category: 'hephae' | 'curated';
+}
+
+export const ShowcasePage: React.FC<ShowcasePageProps> = ({ category }) => {
+    const hephaeApps = [
+        {
+            title: "AI Readiness Quest",
+            description: "Assess your business's AI maturity level with our interactive quest. Get a personalized report and badge.",
+            image: "/foot_traffic_card.png", // Placeholder
+            tags: ["Assessment", "Strategy", "Gemini Pro"],
+            link: "https://ai-readiness-quest-1096334123076.us-west1.run.app/"
+        },
+        {
+            title: "Local Foot Traffic Forecaster",
+            description: "Analyze and forecast local foot traffic trends to optimize your business operations and marketing.",
+            image: "/foot_traffic_card.png",
+            tags: ["Analytics", "Forecasting", "Data"],
+            link: "https://local-foot-traffic-forecaster-1096334123076.us-west1.run.app/"
+        },
+        {
+            title: "Aetheria: AI Restaurant",
+            description: "Experience the future of dining with our AI-powered restaurant demo. Smart menus, reservations, and more.",
+            image: "/foot_traffic_card.png", // Placeholder
+            tags: ["Demo", "Hospitality", "Interactive"],
+            link: "https://aetheria-ai-restaurant-737598413072.us-central1.run.app/"
+        }
+    ];
+
+    const curatedApps = [
         {
             title: "AI Product Mockup",
             description: "Create stunning product mockups instantly. Upload your design and let Gemini place it in realistic, professional scenes.",
@@ -20,6 +48,12 @@ export const ShowcasePage: React.FC = () => {
         }
     ];
 
+    const apps = category === 'hephae' ? hephaeApps : curatedApps;
+    const title = category === 'hephae' ? "Hephae Apps" : "Curated Apps";
+    const description = category === 'hephae'
+        ? "Explore our suite of internal tools and demonstrations designed to showcase the power of Hephae's AI solutions."
+        : "A curated collection of custom GPTs and AI prototypes specifically designed to solve real-world challenges for small businesses.";
+
     return (
         <div className="pt-32 pb-20 min-h-screen relative overflow-hidden">
             {/* Optimization Background Animation */}
@@ -32,10 +66,10 @@ export const ShowcasePage: React.FC = () => {
                 <div>
                     <div className="text-center mb-16">
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Toolkit for AI dummies
+                            {title}
                         </h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            A curated collection of custom GPTs and AI prototypes specifically designed to solve real-world challenges for small businesses.
+                            {description}
                         </p>
                     </div>
 
