@@ -10,6 +10,7 @@ interface AppData {
     title: string;
     description: string;
     image?: string;
+    video?: string;
     imageFit?: 'cover' | 'contain';
     customVisual?: React.ReactNode;
     tags: string[];
@@ -51,14 +52,14 @@ export const ShowcasePage: React.FC<ShowcasePageProps> = ({ category }) => {
         {
             title: "AI Product Mockup",
             description: "Create stunning product mockups instantly. Upload your design and let Gemini place it in realistic, professional scenes.",
-            image: "/product_mockup_card.png",
-            tags: ["Gemini 1.5 Pro", "Image Generation", "Design"],
+            video: "https://www.gstatic.com/aistudio/starter-apps/thumbnails/product_mockup_viz.mp4",
+            tags: ["Gemini 3.0", "Image Generation", "Design"],
             link: "https://aistudio.google.com/apps/bundled/product_mockup?showPreview=true&showAssistant=true"
         },
         {
             title: "Marketing Business AI",
             description: "Your expert marketing consultant. Generate comprehensive strategies, ad copy, and content calendars tailored to your business goals.",
-            image: "/marketing_ai_card.png",
+            image: "https://roi.dog/_next/image?url=%2Froi%20dog%20logo.jpg&w=96&q=75",
             tags: ["GPT-4o", "Strategy", "Copywriting"],
             link: "https://chatgpt.com/g/g-Wud3tXQj3-marketing-business-ai"
         }
@@ -102,6 +103,15 @@ export const ShowcasePage: React.FC<ShowcasePageProps> = ({ category }) => {
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:opacity-0 transition-opacity duration-300" />
                                     {app.customVisual ? (
                                         app.customVisual
+                                    ) : app.video ? (
+                                        <video
+                                            src={app.video}
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                        />
                                     ) : (
                                         <img
                                             src={app.image}
