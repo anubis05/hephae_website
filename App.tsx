@@ -16,7 +16,9 @@ const App: React.FC = () => {
   // Helper to get view from path
   const getViewFromPath = () => {
     const path = window.location.pathname;
-    if (path === '/showcase') return 'showcase';
+    if (path === '/toolkit/hephae') return 'toolkit-hephae';
+    if (path === '/toolkit/curated') return 'toolkit-curated';
+    if (path === '/toolkit') return 'toolkit-hephae'; // Default to hephae
     if (path === '/blog') return 'blog';
     if (path === '/about') return 'about';
     if (path === '/schedule') return 'schedule';
@@ -91,8 +93,12 @@ const App: React.FC = () => {
     navigateTo('about', '/about');
   };
 
-  const handleToolkitClick = () => {
-    navigateTo('toolkit', '/toolkit');
+  const handleHephaeAppsClick = () => {
+    navigateTo('toolkit-hephae', '/toolkit/hephae');
+  };
+
+  const handleCuratedAppsClick = () => {
+    navigateTo('toolkit-curated', '/toolkit/curated');
   };
 
   const handleBlogClick = () => {
@@ -109,36 +115,11 @@ const App: React.FC = () => {
       if (event.state && event.state.view) {
         setCurrentView(event.state.view);
       } else {
-        // Handle initial load or direct URL access
-        const path = window.location.pathname.substring(1);
-        if (path === 'toolkit') {
-          setCurrentView('toolkit');
-        } else if (path === 'blog') {
-          setCurrentView('blog');
-        } else if (path === 'about') {
-          setCurrentView('about');
-        } else if (path === 'schedule') {
-          setCurrentView('schedule');
-        } else {
-          setCurrentView('home');
-        }
+        setCurrentView(getViewFromPath());
       }
     };
 
     window.addEventListener('popstate', handlePopState);
-
-    // Check initial URL on mount
-    const path = window.location.pathname.substring(1);
-    if (path === 'toolkit') {
-      setCurrentView('toolkit');
-    } else if (path === 'blog') {
-      setCurrentView('blog');
-    } else if (path === 'about') {
-      setCurrentView('about');
-    } else if (path === 'schedule') {
-      setCurrentView('schedule');
-    }
-
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
@@ -150,17 +131,18 @@ const App: React.FC = () => {
     return <AboutPage onBack={handleBackHome} />;
   }
 
-  if (currentView === 'toolkit') {
+  if (currentView === 'toolkit-hephae' || currentView === 'toolkit-curated') {
     return (
       <div className="min-h-screen bg-white">
         <Navbar
           onScheduleClick={() => handleScheduleClick('General Inquiry')}
           onAboutClick={handleAboutClick}
-          onToolkitClick={handleToolkitClick}
+          onHephaeAppsClick={handleHephaeAppsClick}
+          onCuratedAppsClick={handleCuratedAppsClick}
           onBlogClick={handleBlogClick}
           onHomeClick={handleBackHome}
         />
-        <ShowcasePage />
+        <ShowcasePage category={currentView === 'toolkit-hephae' ? 'hephae' : 'curated'} />
         <Footer />
       </div>
     );
@@ -172,7 +154,8 @@ const App: React.FC = () => {
         <Navbar
           onScheduleClick={() => handleScheduleClick('General Inquiry')}
           onAboutClick={handleAboutClick}
-          onToolkitClick={handleToolkitClick}
+          onHephaeAppsClick={handleHephaeAppsClick}
+          onCuratedAppsClick={handleCuratedAppsClick}
           onBlogClick={handleBlogClick}
           onHomeClick={handleBackHome}
         />
@@ -187,7 +170,8 @@ const App: React.FC = () => {
       <Navbar
         onScheduleClick={() => handleScheduleClick('General Inquiry')}
         onAboutClick={handleAboutClick}
-        onToolkitClick={handleToolkitClick}
+        onHephaeAppsClick={handleHephaeAppsClick}
+        onCuratedAppsClick={handleCuratedAppsClick}
         onBlogClick={handleBlogClick}
         onHomeClick={handleBackHome}
       />
