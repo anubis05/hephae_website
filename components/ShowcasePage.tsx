@@ -31,7 +31,7 @@ export const ShowcasePage: React.FC<ShowcasePageProps> = ({ category }) => {
         {
             title: "Local Foot Traffic Forecaster",
             description: "Analyze and forecast local foot traffic trends to optimize your business operations and marketing.",
-            image: "/foot_traffic_card.png",
+            image: "https://storage.googleapis.com/everything-hephae/foot-traffic-logo.svg",
             tags: ["Analytics", "Forecasting", "Data"],
             link: "https://local-foot-traffic-forecaster-1096334123076.us-west1.run.app/"
         },
