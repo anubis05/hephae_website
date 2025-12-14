@@ -40,7 +40,8 @@ export const ShowcasePage: React.FC<ShowcasePageProps> = ({ category }) => {
         {
             title: "Aetheria: AI Restaurant",
             description: "Experience the future of dining with our AI-powered restaurant demo. Smart menus, reservations, and more.",
-            image: "/foot_traffic_card.png", // Placeholder
+            image: "https://storage.googleapis.com/everything-hephae/aetheria-logo.svg",
+            imageFit: 'contain',
             tags: ["Demo", "Hospitality", "Interactive"],
             link: "https://aetheria-ai-restaurant-737598413072.us-central1.run.app/"
         }
